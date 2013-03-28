@@ -17,6 +17,10 @@
 
 package com.cyanogenmod.trebuchet;
 
+import com.cyanogenmod.trebuchet.DropTarget.DragObject;
+import com.cyanogenmod.trebuchet.preference.Preferences;
+import com.cyanogenmod.trebuchet.preference.PreferencesProvider;
+
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.animation.Animator;
@@ -56,7 +60,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -100,10 +103,6 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.common.Search;
-import com.cyanogenmod.trebuchet.DropTarget.DragObject;
-import com.cyanogenmod.trebuchet.preference.*;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -351,7 +350,7 @@ public final class Launcher extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         // Listen for expanded desktop
         getContentResolver().registerContentObserver(
-                Settings.System.getUriFor(Settings.System.EXPANDED_DESKTOP_STATE),
+                Settings.System.getUriFor("expanded_desktop_state"),
                 false, new ContentObserver(new Handler()) {
             @Override
             public void onChange(boolean selfChange) {
@@ -1691,7 +1690,7 @@ public final class Launcher extends Activity
         }
         if (appSearchData == null) {
             appSearchData = new Bundle();
-            appSearchData.putString(Search.SOURCE, "launcher-search");
+            appSearchData.putString("source", "launcher-search");
         }
         Rect sourceBounds = new Rect();
         if (mSearchDropTargetBar != null) {

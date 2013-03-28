@@ -16,16 +16,17 @@
 
 package com.cyanogenmod.trebuchet.preference;
 
+import com.cyanogenmod.trebuchet.InternalR;
+import com.cyanogenmod.trebuchet.LauncherApplication;
+import com.cyanogenmod.trebuchet.R;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,15 +35,15 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.cyanogenmod.trebuchet.LauncherApplication;
-import com.cyanogenmod.trebuchet.R;
-
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class Preferences extends PreferenceActivity
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private static final String TAG = "Trebuchet.Preferences";
+    @SuppressWarnings("unused")
+	private static final String TAG = "Trebuchet.Preferences";
 
     private SharedPreferences mPreferences;
 
@@ -88,12 +89,29 @@ public class Preferences extends PreferenceActivity
         }
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void setListAdapter(ListAdapter adapter) {
         if (adapter == null) {
             super.setListAdapter(null);
         } else {
-            super.setListAdapter(new HeaderAdapter(this, getHeaders()));
+        	Method method;
+			try {
+				method = PreferenceActivity.class.getMethod("getHeaders");
+	            super.setListAdapter(new HeaderAdapter(this, (List<Header>) method.invoke(this)));
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
 
@@ -221,9 +239,9 @@ public class Preferences extends PreferenceActivity
                                 false);
                         holder.icon = (ImageView) view.findViewById(R.id.icon);
                         holder.title = (TextView)
-                                view.findViewById(com.android.internal.R.id.title);
+                                view.findViewById(InternalR.id.title);
                         holder.summary = (TextView)
-                                view.findViewById(com.android.internal.R.id.summary);
+                                view.findViewById(InternalR.id.summary);
                         break;
                 }
                 view.setTag(holder);

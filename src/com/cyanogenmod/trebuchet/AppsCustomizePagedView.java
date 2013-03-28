@@ -2087,7 +2087,7 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
         }
         if (!isInOverscroll || mScrollTransformsDirty) {
             // Limit the "normal" effects to mScrollX/Y
-            int scroll = !mVertical ? mScrollX : mScrollY;
+            int scroll = !mVertical ? getScrollX() : getScrollY();
 
             // Reset transforms when we aren't in overscroll
             if (mOverscrollTransformsDirty) {

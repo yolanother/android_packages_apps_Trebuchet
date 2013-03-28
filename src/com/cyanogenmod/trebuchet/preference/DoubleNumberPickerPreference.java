@@ -16,18 +16,18 @@
 
 package com.cyanogenmod.trebuchet.preference;
 
+import com.cyanogenmod.trebuchet.InternalR;
+import com.cyanogenmod.trebuchet.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.DialogPreference;
-import android.preference.Preference;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import com.cyanogenmod.trebuchet.R;
+import android.widget.TextView;
 
 /*
  * @author Danesh
@@ -50,7 +50,7 @@ public class DoubleNumberPickerPreference extends DialogPreference {
     public DoubleNumberPickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray dialogType = context.obtainStyledAttributes(attrs,
-                com.android.internal.R.styleable.DialogPreference, 0, 0);
+                InternalR.styleable.DialogPreference, 0, 0);
         TypedArray doubleNumberPickerType = context.obtainStyledAttributes(attrs,
                 R.styleable.DoubleNumberPickerPreference, 0, 0);
 
@@ -126,8 +126,8 @@ public class DoubleNumberPickerPreference extends DialogPreference {
         }
 
         // No keyboard popup
-        EditText textInput1 = (EditText) mNumberPicker1.findViewById(com.android.internal.R.id.numberpicker_input);
-        EditText textInput2 = (EditText) mNumberPicker2.findViewById(com.android.internal.R.id.numberpicker_input);
+        EditText textInput1 = (EditText) mNumberPicker1.findViewById(InternalR.id.numberpicker_input);
+        EditText textInput2 = (EditText) mNumberPicker2.findViewById(InternalR.id.numberpicker_input);
         if (textInput1 != null && textInput2 != null) {
             textInput1.setCursorVisible(false);
             textInput1.setFocusable(false);

@@ -1,5 +1,8 @@
 package com.cyanogenmod.trebuchet.preference;
 
+import com.cyanogenmod.trebuchet.InternalR;
+import com.cyanogenmod.trebuchet.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.DialogPreference;
@@ -8,8 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import com.cyanogenmod.trebuchet.R;
 
 /**
  * @author nebkat
@@ -25,14 +26,14 @@ public class SeekBarDialogPreference extends DialogPreference implements SeekBar
     public SeekBarDialogPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray dialogType = context.obtainStyledAttributes(attrs,
-                com.android.internal.R.styleable.DialogPreference, 0, 0);
+        		InternalR.styleable.DialogPreference, 0, 0);
         TypedArray seekBarType = context.obtainStyledAttributes(attrs,
                 R.styleable.SeekBarDialogPreference, 0, 0);
 
         mMax = seekBarType.getInt(R.styleable.SeekBarDialogPreference_max, 100);
         mMin = seekBarType.getInt(R.styleable.SeekBarDialogPreference_min, 0);
 
-        mDefault = dialogType.getInt(com.android.internal.R.styleable.Preference_defaultValue, mMin);
+        mDefault = dialogType.getInt(InternalR.styleable.Preference_defaultValue, mMin);
 
         mPrefix = seekBarType.getString(R.styleable.SeekBarDialogPreference_prefix);
         mSuffix = seekBarType.getString(R.styleable.SeekBarDialogPreference_suffix);

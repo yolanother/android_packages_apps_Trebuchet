@@ -17,6 +17,8 @@
 
 package com.cyanogenmod.trebuchet.widget;
 
+import com.cyanogenmod.trebuchet.R;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
@@ -34,9 +36,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Transformation;
 import android.widget.Scroller;
-import com.cyanogenmod.trebuchet.R;
-
-import java.lang.reflect.Field;
 
 public class EcoGallery extends CustomAbsSpinner implements GestureDetector.OnGestureListener {
 
@@ -196,8 +195,8 @@ public class EcoGallery extends CustomAbsSpinner implements GestureDetector.OnGe
 
         // We draw the selected item last (because otherwise the item to the
         // right overlaps it)
-        mGroupFlags |= FLAG_USE_CHILD_DRAWING_ORDER;
-        mGroupFlags |= FLAG_SUPPORT_STATIC_TRANSFORMATIONS;
+        setChildrenDrawingOrderEnabled(true);
+        setStaticTransformationsEnabled(true);
     }
 
     /**

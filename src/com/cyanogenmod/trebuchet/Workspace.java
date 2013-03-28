@@ -1651,8 +1651,8 @@ public class Workspace extends PagedView
                 mScrollTransformsDirty = true;
             }
             if (!isInOverscroll || mScrollTransformsDirty) {
-                // Limit the "normal" effects to mScrollX
-                int scroll = mScrollX;
+                // Limit the "normal" effects to getScrollX()
+                int scroll = getScrollX();
 
                 // Reset transforms when we aren't in overscroll
                 if (mOverscrollFade != 0) {
