@@ -97,19 +97,16 @@ public class Preferences extends PreferenceActivity
         } else {
         	Method method;
 			try {
-				method = PreferenceActivity.class.getMethod("getHeaders");
-	            super.setListAdapter(new HeaderAdapter(this, (List<Header>) method.invoke(this)));
-			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	        	method = PreferenceActivity.class.getMethod("getHeaders");
+	        	List<Header> headers = (List<Header>) method.invoke(this);	        	
+	            super.setListAdapter(new HeaderAdapter(this, headers));
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }
